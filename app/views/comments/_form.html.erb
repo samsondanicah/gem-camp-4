@@ -1,0 +1,18 @@
+<%= form_with model: comment, url: path, data: { turbo: false } do |form| %>
+  <% if comment.errors.any? %>
+    <ul>
+      <% comment.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
+  </div>
+  <%= form.submit %>
+<% end %>
