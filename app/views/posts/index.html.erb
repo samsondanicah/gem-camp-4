@@ -7,6 +7,7 @@
   <td>category</td>
   <td>action</td>
   </thead>
+  <%= link_to 'New', new_post_path%>
   <% @posts.each do |post| %>
     <tr>
       <td><%= post.title %></td>
@@ -15,7 +16,7 @@
       <td>
         <%= link_to 'Show', post_path(post) %>
         <%= link_to 'Edit', edit_post_path(post) %>
-        <%= button_to 'Delete', post_path(post), method: :delete%>
+        <%= button_to 'Delete', post_path(post)%>
         <%= link_to 'Comments', post_comments_path(post) %>
         <%= link_to 'New Comment', new_post_comment_path(post) %>
       </td>
@@ -23,4 +24,3 @@
   <% end %>
 </table>
 
-link_to 'New', new_post_path
