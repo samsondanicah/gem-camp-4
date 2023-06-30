@@ -37,9 +37,9 @@ class PostsController < ApplicationController
 
   def destroy
     if @category.destroy
-    flash[:notice] = 'Category destroy successfully'
+      flash[:notice] = 'Category destroy successfully'
     else
-      flash[:alert] = "@category.errors.full_messages.join(',')"
+      flash[:alert] = "category.errors.full_messages.join(',')"
     end
     redirect_to posts_path
   end
