@@ -36,23 +36,23 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    if @category.destroy
-      flash[:notice] = 'Category destroy successfully'
+    if @post.destroy
+      flash[:notice] = 'post destroy successfully'
     else
-      flash[:alert] = "category.errors.full_messages.join(',')"
+      flash[:alert] = @post.errors.full_messages.join(',')
     end
     redirect_to posts_path
   end
 
   private
 
-   def set_post
-       @post = Post.find(params[:id])
-     end
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-   def post_params
-     params.require(:post).permit(:title, :content, category_ids: [])
-     end
+  def post_params
+    params.require(:post).permit(:title, :content, category_ids: [])
+  end
 end
 
 
