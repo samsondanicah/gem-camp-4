@@ -1,18 +1,24 @@
 <h1>Post List</h1>
 
+<%= link_to 'New', new_post_path %>
+<td>&nbsp&nbsp<td>
+<%= link_to 'Categories', new_category_path %>
+
 <table>
   <thead>
   <td>Title</td>
   <td>&nbsp</td>
   <td>Content</td>
-  <td>&nbsp</td>
+  <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
   <td>Category</td>
-  <td>&nbsp</td>
+  <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
   <td>User</td>
   <td>&nbsp</td>
+  <td>Comments count</td>
+  <td>&nbsp</td>
   <td>Action</td>
+  <td>&nbsp</td>
   </thead>
-  <%= link_to 'New', new_post_path %>
   <% @posts.each do |post| %>
     <tr>
       <td><%= post.title %></td>
@@ -20,17 +26,20 @@
       <td><%= post.content %></td>
       <td>&nbsp</td>
       <td><%= post.categories.pluck(:name).join(',') %></td>
-      <td>&nbsp</td>
+      <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
       <td><%= post.user&.email %></td>
       <td>&nbsp</td>
+      <td><%= post.comments_count %></td>
+      <td>&nbsp&nbsp&nbsp&nbsp&nbsp</td>
       <td>
         <%= link_to 'Show', post_path(post) %> <br>
-        <%= link_to 'Edit', edit_post_path(post) if user_signed_in? && post.user == current_user %>
-        <%= button_to 'Delete', post_path(post), method: :delete if user_signed_in? && post.user == current_user %>
+        <%= link_to 'Edit', edit_post_path(post) if user_signed_in? && post.user == current_user %> <br>
         <%= link_to 'Comments', post_comments_path(post) %> <br>
         <%= link_to 'New Comment', new_post_comment_path(post) %>
+        <%= button_to 'Delete', post_path(post), method: :delete if user_signed_in? && post.user == current_user %>
       </td>
     </tr>
   <% end %>
 </table>
 
+<%= link_to 'Show', new_post_path %>

@@ -1,10 +1,11 @@
 class CategoriesController < ApplicationController
+  before_action :set_category, only: [:edit, :update, :destroy]
   def index
     @categories = Category.all
   end
 
   def new
-    @categories = Category.new
+    @category = Category.new
   end
 
   def create
@@ -31,7 +32,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     flash[:notice] = 'Category deleted successfully'
-    redirect_to categories_path
+    redirect_to category_path
   end
 
   private
